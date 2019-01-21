@@ -919,9 +919,9 @@ TEST_F(Dense, SquareMatrixIsTransposable)
     auto trans = mtx5->transpose();
     auto trans_as_dense = static_cast<gko::matrix::Dense<> *>(trans.get());
 
-    ASSERT_MTX_NEAR(trans_as_dense,
-                    l({{1.0, -2.0, 2.1}, {-1.0, 2.0, 3.4}, {-0.5, 4.5, 1.2}}),
-                    0.0);
+    GKO_ASSERT_MTX_NEAR(
+        trans_as_dense,
+        l({{1.0, -2.0, 2.1}, {-1.0, 2.0, 3.4}, {-0.5, 4.5, 1.2}}), 0.0);
 }
 
 
@@ -930,8 +930,8 @@ TEST_F(Dense, NonSquareMatrixIsTransposable)
     auto trans = mtx4->transpose();
     auto trans_as_dense = static_cast<gko::matrix::Dense<> *>(trans.get());
 
-    ASSERT_MTX_NEAR(trans_as_dense, l({{1.0, 0.0}, {3.0, 5.0}, {2.0, 0.0}}),
-                    0.0);
+    GKO_ASSERT_MTX_NEAR(trans_as_dense, l({{1.0, 0.0}, {3.0, 5.0}, {2.0, 0.0}}),
+                        0.0);
 }
 
 
@@ -941,10 +941,10 @@ TEST_F(Dense, NonSquareMatrixIsConjugateTransposable)
     auto trans_as_dense =
         static_cast<gko::matrix::Dense<std::complex<double>> *>(trans.get());
 
-    ASSERT_MTX_NEAR(trans_as_dense,
-                    l({{1.0 - 2.0 * i, -2.0 - 1.5 * i, 1.0 + 0.0 * i},
-                       {-1.0 - 2.1 * i, 4.5 + 0.0 * i, -i}}),
-                    0.0);
+    GKO_ASSERT_MTX_NEAR(trans_as_dense,
+                        l({{1.0 - 2.0 * i, -2.0 - 1.5 * i, 1.0 + 0.0 * i},
+                           {-1.0 - 2.1 * i, 4.5 + 0.0 * i, -i}}),
+                        0.0);
 }
 
 

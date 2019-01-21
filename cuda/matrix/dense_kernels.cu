@@ -60,7 +60,7 @@ void simple_apply(std::shared_ptr<const CudaExecutor> exec,
 {
     if (cublas::is_supported<ValueType>::value) {
         auto handle = exec->get_cublas_handle();
-        ASSERT_NO_CUBLAS_ERRORS(
+        GKO_ASSERT_NO_CUBLAS_ERRORS(
             cublasSetPointerMode(handle, CUBLAS_POINTER_MODE_HOST));
         auto alpha = one<ValueType>();
         auto beta = zero<ValueType>();
@@ -69,10 +69,10 @@ void simple_apply(std::shared_ptr<const CudaExecutor> exec,
                      b->get_const_values(), b->get_stride(),
                      a->get_const_values(), a->get_stride(), &beta,
                      c->get_values(), c->get_stride());
-        ASSERT_NO_CUBLAS_ERRORS(
+        GKO_ASSERT_NO_CUBLAS_ERRORS(
             cublasSetPointerMode(handle, CUBLAS_POINTER_MODE_DEVICE));
     } else {
-        NOT_IMPLEMENTED;
+        GKO_NOT_IMPLEMENTED;
     }
 }
 
@@ -93,7 +93,7 @@ void apply(std::shared_ptr<const CudaExecutor> exec,
                      beta->get_const_values(), c->get_values(),
                      c->get_stride());
     } else {
-        NOT_IMPLEMENTED;
+        GKO_NOT_IMPLEMENTED;
     }
 }
 
@@ -350,7 +350,7 @@ GKO_INSTANTIATE_FOR_EACH_VALUE_TYPE(GKO_DECLARE_DENSE_COMPUTE_NORM2_KERNEL);
 template <typename ValueType, typename IndexType>
 void convert_to_coo(std::shared_ptr<const CudaExecutor> exec,
                     matrix::Coo<ValueType, IndexType> *result,
-                    const matrix::Dense<ValueType> *source) NOT_IMPLEMENTED;
+                    const matrix::Dense<ValueType> *source) GKO_NOT_IMPLEMENTED;
 
 GKO_INSTANTIATE_FOR_EACH_VALUE_AND_INDEX_TYPE(
     GKO_DECLARE_DENSE_CONVERT_TO_COO_KERNEL);
@@ -359,7 +359,7 @@ GKO_INSTANTIATE_FOR_EACH_VALUE_AND_INDEX_TYPE(
 template <typename ValueType, typename IndexType>
 void convert_to_csr(std::shared_ptr<const CudaExecutor> exec,
                     matrix::Csr<ValueType, IndexType> *result,
-                    const matrix::Dense<ValueType> *source) NOT_IMPLEMENTED;
+                    const matrix::Dense<ValueType> *source) GKO_NOT_IMPLEMENTED;
 
 GKO_INSTANTIATE_FOR_EACH_VALUE_AND_INDEX_TYPE(
     GKO_DECLARE_DENSE_CONVERT_TO_CSR_KERNEL);
@@ -368,7 +368,7 @@ GKO_INSTANTIATE_FOR_EACH_VALUE_AND_INDEX_TYPE(
 template <typename ValueType, typename IndexType>
 void move_to_csr(std::shared_ptr<const CudaExecutor> exec,
                  matrix::Csr<ValueType, IndexType> *result,
-                 const matrix::Dense<ValueType> *source) NOT_IMPLEMENTED;
+                 const matrix::Dense<ValueType> *source) GKO_NOT_IMPLEMENTED;
 
 GKO_INSTANTIATE_FOR_EACH_VALUE_AND_INDEX_TYPE(
     GKO_DECLARE_DENSE_MOVE_TO_CSR_KERNEL);
@@ -377,7 +377,7 @@ GKO_INSTANTIATE_FOR_EACH_VALUE_AND_INDEX_TYPE(
 template <typename ValueType, typename IndexType>
 void convert_to_ell(std::shared_ptr<const CudaExecutor> exec,
                     matrix::Ell<ValueType, IndexType> *result,
-                    const matrix::Dense<ValueType> *source) NOT_IMPLEMENTED;
+                    const matrix::Dense<ValueType> *source) GKO_NOT_IMPLEMENTED;
 
 GKO_INSTANTIATE_FOR_EACH_VALUE_AND_INDEX_TYPE(
     GKO_DECLARE_DENSE_CONVERT_TO_ELL_KERNEL);
@@ -386,7 +386,7 @@ GKO_INSTANTIATE_FOR_EACH_VALUE_AND_INDEX_TYPE(
 template <typename ValueType, typename IndexType>
 void move_to_ell(std::shared_ptr<const CudaExecutor> exec,
                  matrix::Ell<ValueType, IndexType> *result,
-                 const matrix::Dense<ValueType> *source) NOT_IMPLEMENTED;
+                 const matrix::Dense<ValueType> *source) GKO_NOT_IMPLEMENTED;
 
 GKO_INSTANTIATE_FOR_EACH_VALUE_AND_INDEX_TYPE(
     GKO_DECLARE_DENSE_MOVE_TO_ELL_KERNEL);
@@ -395,7 +395,8 @@ GKO_INSTANTIATE_FOR_EACH_VALUE_AND_INDEX_TYPE(
 template <typename ValueType, typename IndexType>
 void convert_to_hybrid(std::shared_ptr<const CudaExecutor> exec,
                        matrix::Hybrid<ValueType, IndexType> *result,
-                       const matrix::Dense<ValueType> *source) NOT_IMPLEMENTED;
+                       const matrix::Dense<ValueType> *source)
+    GKO_NOT_IMPLEMENTED;
 
 GKO_INSTANTIATE_FOR_EACH_VALUE_AND_INDEX_TYPE(
     GKO_DECLARE_DENSE_CONVERT_TO_HYBRID_KERNEL);
@@ -404,7 +405,7 @@ GKO_INSTANTIATE_FOR_EACH_VALUE_AND_INDEX_TYPE(
 template <typename ValueType, typename IndexType>
 void move_to_hybrid(std::shared_ptr<const CudaExecutor> exec,
                     matrix::Hybrid<ValueType, IndexType> *result,
-                    const matrix::Dense<ValueType> *source) NOT_IMPLEMENTED;
+                    const matrix::Dense<ValueType> *source) GKO_NOT_IMPLEMENTED;
 
 GKO_INSTANTIATE_FOR_EACH_VALUE_AND_INDEX_TYPE(
     GKO_DECLARE_DENSE_MOVE_TO_HYBRID_KERNEL);
@@ -413,7 +414,8 @@ GKO_INSTANTIATE_FOR_EACH_VALUE_AND_INDEX_TYPE(
 template <typename ValueType, typename IndexType>
 void convert_to_sellp(std::shared_ptr<const CudaExecutor> exec,
                       matrix::Sellp<ValueType, IndexType> *result,
-                      const matrix::Dense<ValueType> *source) NOT_IMPLEMENTED;
+                      const matrix::Dense<ValueType> *source)
+    GKO_NOT_IMPLEMENTED;
 
 GKO_INSTANTIATE_FOR_EACH_VALUE_AND_INDEX_TYPE(
     GKO_DECLARE_DENSE_CONVERT_TO_SELLP_KERNEL);
@@ -422,7 +424,7 @@ GKO_INSTANTIATE_FOR_EACH_VALUE_AND_INDEX_TYPE(
 template <typename ValueType, typename IndexType>
 void move_to_sellp(std::shared_ptr<const CudaExecutor> exec,
                    matrix::Sellp<ValueType, IndexType> *result,
-                   const matrix::Dense<ValueType> *source) NOT_IMPLEMENTED;
+                   const matrix::Dense<ValueType> *source) GKO_NOT_IMPLEMENTED;
 
 GKO_INSTANTIATE_FOR_EACH_VALUE_AND_INDEX_TYPE(
     GKO_DECLARE_DENSE_MOVE_TO_SELLP_KERNEL);
@@ -431,7 +433,7 @@ GKO_INSTANTIATE_FOR_EACH_VALUE_AND_INDEX_TYPE(
 template <typename ValueType>
 void count_nonzeros(std::shared_ptr<const CudaExecutor> exec,
                     const matrix::Dense<ValueType> *source,
-                    size_type *result) NOT_IMPLEMENTED;
+                    size_type *result) GKO_NOT_IMPLEMENTED;
 
 GKO_INSTANTIATE_FOR_EACH_VALUE_TYPE(GKO_DECLARE_DENSE_COUNT_NONZEROS_KERNEL);
 
@@ -439,7 +441,7 @@ GKO_INSTANTIATE_FOR_EACH_VALUE_TYPE(GKO_DECLARE_DENSE_COUNT_NONZEROS_KERNEL);
 template <typename ValueType>
 void calculate_max_nnz_per_row(std::shared_ptr<const CudaExecutor> exec,
                                const matrix::Dense<ValueType> *source,
-                               size_type *result) NOT_IMPLEMENTED;
+                               size_type *result) GKO_NOT_IMPLEMENTED;
 
 GKO_INSTANTIATE_FOR_EACH_VALUE_TYPE(
     GKO_DECLARE_DENSE_CALCULATE_MAX_NNZ_PER_ROW_KERNEL);
@@ -448,7 +450,7 @@ GKO_INSTANTIATE_FOR_EACH_VALUE_TYPE(
 template <typename ValueType>
 void calculate_nonzeros_per_row(std::shared_ptr<const CudaExecutor> exec,
                                 const matrix::Dense<ValueType> *source,
-                                Array<size_type> *result) NOT_IMPLEMENTED;
+                                Array<size_type> *result) GKO_NOT_IMPLEMENTED;
 
 GKO_INSTANTIATE_FOR_EACH_VALUE_TYPE(
     GKO_DECLARE_DENSE_CALCULATE_NONZEROS_PER_ROW_KERNEL);
@@ -458,7 +460,7 @@ template <typename ValueType>
 void calculate_total_cols(std::shared_ptr<const CudaExecutor> exec,
                           const matrix::Dense<ValueType> *source,
                           size_type *result,
-                          size_type stride_factor) NOT_IMPLEMENTED;
+                          size_type stride_factor) GKO_NOT_IMPLEMENTED;
 
 GKO_INSTANTIATE_FOR_EACH_VALUE_TYPE(
     GKO_DECLARE_DENSE_CALCULATE_TOTAL_COLS_KERNEL);
@@ -471,7 +473,7 @@ void transpose(std::shared_ptr<const CudaExecutor> exec,
 {
     if (cublas::is_supported<ValueType>::value) {
         auto handle = exec->get_cublas_handle();
-        ASSERT_NO_CUBLAS_ERRORS(
+        GKO_ASSERT_NO_CUBLAS_ERRORS(
             cublasSetPointerMode(handle, CUBLAS_POINTER_MODE_HOST));
 
         auto alpha = one<ValueType>();
@@ -482,10 +484,10 @@ void transpose(std::shared_ptr<const CudaExecutor> exec,
                      static_cast<ValueType *>(nullptr), trans->get_size()[1],
                      trans->get_values(), trans->get_stride());
 
-        ASSERT_NO_CUBLAS_ERRORS(
+        GKO_ASSERT_NO_CUBLAS_ERRORS(
             cublasSetPointerMode(handle, CUBLAS_POINTER_MODE_DEVICE));
     } else {
-        NOT_IMPLEMENTED;
+        GKO_NOT_IMPLEMENTED;
     }
 };
 
@@ -500,7 +502,7 @@ void conj_transpose(std::shared_ptr<const CudaExecutor> exec,
 {
     if (cublas::is_supported<ValueType>::value) {
         auto handle = exec->get_cublas_handle();
-        ASSERT_NO_CUBLAS_ERRORS(
+        GKO_ASSERT_NO_CUBLAS_ERRORS(
             cublasSetPointerMode(handle, CUBLAS_POINTER_MODE_HOST));
 
         auto alpha = one<ValueType>();
@@ -511,10 +513,10 @@ void conj_transpose(std::shared_ptr<const CudaExecutor> exec,
                      static_cast<ValueType *>(nullptr), trans->get_size()[1],
                      trans->get_values(), trans->get_stride());
 
-        ASSERT_NO_CUBLAS_ERRORS(
+        GKO_ASSERT_NO_CUBLAS_ERRORS(
             cublasSetPointerMode(handle, CUBLAS_POINTER_MODE_HOST));
     } else {
-        NOT_IMPLEMENTED;
+        GKO_NOT_IMPLEMENTED;
     }
 };
 

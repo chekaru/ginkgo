@@ -58,7 +58,7 @@ template <typename ValueType, typename IndexType>
 void find_blocks(std::shared_ptr<const OmpExecutor> exec,
                  const matrix::Csr<ValueType, IndexType> *system_matrix,
                  uint32 max_block_size, size_type &num_blocks,
-                 Array<IndexType> &block_pointers) NOT_IMPLEMENTED;
+                 Array<IndexType> &block_pointers) GKO_NOT_IMPLEMENTED;
 
 GKO_INSTANTIATE_FOR_EACH_VALUE_AND_INDEX_TYPE(
     GKO_DECLARE_JACOBI_FIND_BLOCKS_KERNEL);
@@ -74,7 +74,7 @@ void generate(std::shared_ptr<const OmpExecutor> exec,
               Array<remove_complex<ValueType>> &conditioning,
               Array<precision_reduction> &block_precisions,
               const Array<IndexType> &block_pointers,
-              Array<ValueType> &blocks) NOT_IMPLEMENTED;
+              Array<ValueType> &blocks) GKO_NOT_IMPLEMENTED;
 
 GKO_INSTANTIATE_FOR_EACH_VALUE_AND_INDEX_TYPE(
     GKO_DECLARE_JACOBI_GENERATE_KERNEL);
@@ -91,7 +91,7 @@ void apply(std::shared_ptr<const OmpExecutor> exec, size_type num_blocks,
            const matrix::Dense<ValueType> *alpha,
            const matrix::Dense<ValueType> *b,
            const matrix::Dense<ValueType> *beta,
-           matrix::Dense<ValueType> *x) NOT_IMPLEMENTED;
+           matrix::Dense<ValueType> *x) GKO_NOT_IMPLEMENTED;
 
 GKO_INSTANTIATE_FOR_EACH_VALUE_AND_INDEX_TYPE(GKO_DECLARE_JACOBI_APPLY_KERNEL);
 
@@ -105,7 +105,7 @@ void simple_apply(
     const Array<precision_reduction> &block_precisions,
     const Array<IndexType> &block_pointers, const Array<ValueType> &blocks,
     const matrix::Dense<ValueType> *b,
-    matrix::Dense<ValueType> *x) NOT_IMPLEMENTED;
+    matrix::Dense<ValueType> *x) GKO_NOT_IMPLEMENTED;
 
 GKO_INSTANTIATE_FOR_EACH_VALUE_AND_INDEX_TYPE(
     GKO_DECLARE_JACOBI_SIMPLE_APPLY_KERNEL);
@@ -118,7 +118,7 @@ void convert_to_dense(
     const Array<IndexType> &block_pointers, const Array<ValueType> &blocks,
     const preconditioner::block_interleaved_storage_scheme<IndexType>
         &storage_scheme,
-    ValueType *result_values, size_type result_stride) NOT_IMPLEMENTED;
+    ValueType *result_values, size_type result_stride) GKO_NOT_IMPLEMENTED;
 
 GKO_INSTANTIATE_FOR_EACH_VALUE_AND_INDEX_TYPE(
     GKO_DECLARE_JACOBI_CONVERT_TO_DENSE_KERNEL);

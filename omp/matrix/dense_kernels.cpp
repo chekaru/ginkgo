@@ -200,7 +200,7 @@ GKO_INSTANTIATE_FOR_EACH_VALUE_TYPE(GKO_DECLARE_DENSE_COMPUTE_NORM2_KERNEL);
 template <typename ValueType, typename IndexType>
 void convert_to_coo(std::shared_ptr<const OmpExecutor> exec,
                     matrix::Coo<ValueType, IndexType> *result,
-                    const matrix::Dense<ValueType> *source) NOT_IMPLEMENTED;
+                    const matrix::Dense<ValueType> *source) GKO_NOT_IMPLEMENTED;
 
 GKO_INSTANTIATE_FOR_EACH_VALUE_AND_INDEX_TYPE(
     GKO_DECLARE_DENSE_CONVERT_TO_COO_KERNEL);
@@ -209,7 +209,7 @@ GKO_INSTANTIATE_FOR_EACH_VALUE_AND_INDEX_TYPE(
 template <typename ValueType, typename IndexType>
 void convert_to_csr(std::shared_ptr<const OmpExecutor> exec,
                     matrix::Csr<ValueType, IndexType> *result,
-                    const matrix::Dense<ValueType> *source) NOT_IMPLEMENTED;
+                    const matrix::Dense<ValueType> *source) GKO_NOT_IMPLEMENTED;
 
 GKO_INSTANTIATE_FOR_EACH_VALUE_AND_INDEX_TYPE(
     GKO_DECLARE_DENSE_CONVERT_TO_CSR_KERNEL);
@@ -218,7 +218,7 @@ GKO_INSTANTIATE_FOR_EACH_VALUE_AND_INDEX_TYPE(
 template <typename ValueType, typename IndexType>
 void move_to_csr(std::shared_ptr<const OmpExecutor> exec,
                  matrix::Csr<ValueType, IndexType> *result,
-                 const matrix::Dense<ValueType> *source) NOT_IMPLEMENTED;
+                 const matrix::Dense<ValueType> *source) GKO_NOT_IMPLEMENTED;
 
 GKO_INSTANTIATE_FOR_EACH_VALUE_AND_INDEX_TYPE(
     GKO_DECLARE_DENSE_MOVE_TO_CSR_KERNEL);
@@ -227,7 +227,7 @@ GKO_INSTANTIATE_FOR_EACH_VALUE_AND_INDEX_TYPE(
 template <typename ValueType, typename IndexType>
 void convert_to_ell(std::shared_ptr<const OmpExecutor> exec,
                     matrix::Ell<ValueType, IndexType> *result,
-                    const matrix::Dense<ValueType> *source) NOT_IMPLEMENTED;
+                    const matrix::Dense<ValueType> *source) GKO_NOT_IMPLEMENTED;
 
 GKO_INSTANTIATE_FOR_EACH_VALUE_AND_INDEX_TYPE(
     GKO_DECLARE_DENSE_CONVERT_TO_ELL_KERNEL);
@@ -236,7 +236,7 @@ GKO_INSTANTIATE_FOR_EACH_VALUE_AND_INDEX_TYPE(
 template <typename ValueType, typename IndexType>
 void move_to_ell(std::shared_ptr<const OmpExecutor> exec,
                  matrix::Ell<ValueType, IndexType> *result,
-                 const matrix::Dense<ValueType> *source) NOT_IMPLEMENTED;
+                 const matrix::Dense<ValueType> *source) GKO_NOT_IMPLEMENTED;
 
 GKO_INSTANTIATE_FOR_EACH_VALUE_AND_INDEX_TYPE(
     GKO_DECLARE_DENSE_MOVE_TO_ELL_KERNEL);
@@ -245,7 +245,8 @@ GKO_INSTANTIATE_FOR_EACH_VALUE_AND_INDEX_TYPE(
 template <typename ValueType, typename IndexType>
 void convert_to_hybrid(std::shared_ptr<const OmpExecutor> exec,
                        matrix::Hybrid<ValueType, IndexType> *result,
-                       const matrix::Dense<ValueType> *source) NOT_IMPLEMENTED;
+                       const matrix::Dense<ValueType> *source)
+    GKO_NOT_IMPLEMENTED;
 
 GKO_INSTANTIATE_FOR_EACH_VALUE_AND_INDEX_TYPE(
     GKO_DECLARE_DENSE_CONVERT_TO_HYBRID_KERNEL);
@@ -254,7 +255,7 @@ GKO_INSTANTIATE_FOR_EACH_VALUE_AND_INDEX_TYPE(
 template <typename ValueType, typename IndexType>
 void move_to_hybrid(std::shared_ptr<const OmpExecutor> exec,
                     matrix::Hybrid<ValueType, IndexType> *result,
-                    const matrix::Dense<ValueType> *source) NOT_IMPLEMENTED;
+                    const matrix::Dense<ValueType> *source) GKO_NOT_IMPLEMENTED;
 
 GKO_INSTANTIATE_FOR_EACH_VALUE_AND_INDEX_TYPE(
     GKO_DECLARE_DENSE_MOVE_TO_HYBRID_KERNEL);
@@ -391,7 +392,7 @@ GKO_INSTANTIATE_FOR_EACH_VALUE_TYPE(
 template <typename ValueType>
 void calculate_nonzeros_per_row(std::shared_ptr<const OmpExecutor> exec,
                                 const matrix::Dense<ValueType> *source,
-                                Array<size_type> *result) NOT_IMPLEMENTED;
+                                Array<size_type> *result) GKO_NOT_IMPLEMENTED;
 
 GKO_INSTANTIATE_FOR_EACH_VALUE_TYPE(
     GKO_DECLARE_DENSE_CALCULATE_NONZEROS_PER_ROW_KERNEL);
