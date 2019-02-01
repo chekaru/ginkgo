@@ -1,4 +1,4 @@
-set(SOURCES
+set(GINKGO_SOURCES
     base/version.cpp
     matrix/coo_kernels.cpp
     matrix/csr_kernels.cpp
@@ -19,16 +19,16 @@ find_package(OpenMP)
 if(OPENMP_FOUND)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
 else()
-    set(BUILD_OMP OFF CACHE BOOL "Compile OpenMP kernels for CPU" FORCE)
+    set(GINKGO_BUILD_OMP OFF CACHE BOOL "Compile OpenMP kernels for CPU" FORCE)
 endif()
 
 add_library(ginkgo_omp
     $<TARGET_OBJECTS:ginkgo_omp_device>
-    ${SOURCES})
+    ${GINKGO_SOURCES})
 target_link_libraries(ginkgo_omp PUBLIC ginkgo_cuda)
 ginkgo_default_includes(ginkgo_omp)
 ginkgo_install_library(ginkgo_omp omp)
 
-if(BUILD_TESTS)
+if(GINKGO_BUILD_TESTS)
     add_subdirectory(test)
 endif()

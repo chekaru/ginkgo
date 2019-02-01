@@ -1,4 +1,4 @@
-set(SOURCES
+set(GINKGO_SOURCES
     base/version.cpp
     matrix/coo_kernels.cpp
     matrix/csr_kernels.cpp
@@ -17,10 +17,10 @@ set(SOURCES
 
 add_library(ginkgo_reference
     $<TARGET_OBJECTS:ginkgo_reference_device>
-    ${SOURCES})
+    ${GINKGO_SOURCES})
 ginkgo_default_includes(ginkgo_reference)
 ginkgo_install_library(ginkgo_reference reference)
 
-if(BUILD_TESTS)
+if(GINKGO_BUILD_TESTS)
     add_subdirectory(test)
 endif()
