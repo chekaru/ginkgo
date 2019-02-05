@@ -1,8 +1,4 @@
-if(WIN32)
-    cmake_minimum_required(VERSION 3.9)
-else()
-    cmake_minimum_required(VERSION 3.8)
-endif()
+cmake_minimum_required(VERSION 3.9)
 
 project(Ginkgo LANGUAGES C CXX VERSION 0.0.0)
 set(Ginkgo_VERSION_TAG "develop")
@@ -64,7 +60,14 @@ configure_file(${Ginkgo_SOURCE_DIR}/include/ginkgo/config.hpp.in
   ${Ginkgo_BINARY_DIR}/include/ginkgo/config.hpp)
 
 
+# Try to find the third party packages before using our subdirectories
+include(cmake/package_helpers.cmake)
+ginkgo_find_package(GTest)
+ginkgo_find_package(gflags)
+ginkgo_find_package(RapidJSON)
 add_subdirectory(third_party)    # Third-party tools and libraries
+
+# Ginkgo library
 add_subdirectory(core)           # Core Ginkgo types and top-level functions
 if (GINKGO_BUILD_REFERENCE)
     add_subdirectory(reference)  # Reference kernel implementations
